@@ -1,11 +1,11 @@
 import request from '@/utils/request'
 
 export default {
-  updateUuid(uuid) {
+  updateUuid(uuid, oldpwd, newpwd) {
     return request({
       url: '/updateUuid/',
       method: 'get',
-      params: { uuid: uuid }
+      params: { uuid: uuid, oldpwd: oldpwd, newpwd: newpwd }
     })
   },
   update(data) {

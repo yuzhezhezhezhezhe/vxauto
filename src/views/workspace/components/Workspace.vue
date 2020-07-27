@@ -35,6 +35,12 @@
             <template slot="prepend"> {{ this.url.substring(0,this.url.lastIndexOf("/")) + '/' }}</template>
           </el-input>
         </el-form-item>
+        <el-form-item label="原密码">
+          <el-input v-model.trim="fromData.oldpwd" />
+        </el-form-item>
+        <el-form-item label="新密码" prop="newpwd">
+          <el-input v-model.trim="fromData.newpwd" placeholder="初始密码为空" />
+        </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">
@@ -52,6 +58,17 @@
 import store from '@/store'
 import api from '@/api'
 export default {
+  // props: {
+  //   user: {
+  //     type: Object,
+  //     default: () => {
+  //       return {
+  //         oldpwd: '',
+  //         newpwd: ''
+  //       }
+  //     }
+  //   }
+  // },
   filters: {
 
   },
@@ -73,16 +90,35 @@ export default {
         }
       }, 1000)
     }
+    var checkPassWord = (rule, value, callback) => {
+      // if (!value) {
+      //   return callback(new Error('后缀不能为空'))
+      // }
+      setTimeout(() => {
+        var reg = /^[A-Za-z0-9]{6,18}$/
+        if (!reg.test(value) && value) {
+          callback(new Error('用户名密码仅支持6-18位以上大小写字符/数字！'))
+        } else {
+          callback()
+        }
+      }, 1000)
+    }
     return {
       url: store.getters.url,
       loading: false,
       dialogFormVisible: false,
       fromData: {
-        uuid: ''
+        uuid: '',
+        oldpwd: '',
+        newpwd: ''
       },
+      reg: /^[A-Za-z0-9]{6,18}$/,
       rules: {
         uuid: [
           { validator: checkUuid, trigger: 'blur' }
+        ],
+        newpwd: [
+          { validator: checkPassWord, trigger: 'blur' }
         ]
       }
     }
@@ -116,12 +152,14 @@ export default {
     },
     customizeShow() {
       this.fromData.uuid = ''
+      this.fromData.newpwd = ''
+      this.fromData.oldpwd = ''
       this.dialogFormVisible = true
     },
     customizeUrl() {
       this.$refs['fromData'].validate((valid) => {
         if (valid) {
-          api.Workspace.updateUuid(this.fromData.uuid).then((res) => {
+          api.Workspace.updateUuid(this.fromData.uuid, this.fromData.oldpwd, this.fromData.newpwd).then((res) => {
             this.url = res.data
             this.$notify({
               title: 'Success',
