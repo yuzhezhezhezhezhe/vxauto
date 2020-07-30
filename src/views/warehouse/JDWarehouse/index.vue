@@ -12,13 +12,13 @@
 
     <el-table v-loading="listLoading" :data="list" border fit highlight-current-row style="width: 100%">
 
-      <el-table-column align="center" label="ID">
+      <el-table-column align="center" label="ID" width="100px">
         <template slot-scope="scope">
           <span>{{ scope.row.id }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column align="center" label="标题">
+      <el-table-column align="center" label="标题" min-width="200px">
         <template slot-scope="scope">
           <el-popover
             placement="top-start"
@@ -42,7 +42,7 @@
         </template>
       </el-table-column>
 
-      <el-table-column align="center" label="时间">
+      <el-table-column align="center" label="时间" width="180px">
         <template slot-scope="scope">
           <span>{{ scope.row.time }}</span>
         </template>

@@ -48,7 +48,7 @@ export default {
       this.$router.push(`/login?redirect=${this.$route.fullPath}`)
     },
     submit() {
-      this.$confirm('重置密码后需要重新访问工作空间, 是否继续?', '提示', {
+      this.$confirm('重置密码后需要重新访问工作空间并重置tokenId, 是否继续?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
