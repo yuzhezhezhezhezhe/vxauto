@@ -65,7 +65,7 @@ export const constantRoutes = [
         path: 'addWorkspace',
         name: 'addWorkspace',
         component: () => import('@/views/workspace/index'),
-        meta: { title: '工作空间', icon: 'table' }
+        meta: { title: '工作空间', icon: 'el-icon-office-building' }
       }
     ]
   },
@@ -74,20 +74,20 @@ export const constantRoutes = [
     path: '/commodityWarehouse',
     component: Layout,
     name: 'CommodityWarehouse',
-    meta: { title: '商品库', icon: 'el-icon-s-help' },
+    meta: { title: '商品库', icon: 'el-icon-goods' },
     redirect: '/commodityWarehouse/JDWarehouse',
     children: [
       {
         path: 'JDWarehouse',
         name: 'JDWarehouse',
         component: () => import('@/views/warehouse/JDWarehouse/index'),
-        meta: { title: '京东商品库', icon: 'table' }
+        meta: { title: '京东商品库', icon: 'el-icon-s-goods' }
       },
       {
         path: 'TBWorkspace',
         name: 'TBWorkspace',
         component: () => import('@/views/warehouse/TBWarehouse/flexbox'),
-        meta: { title: '淘宝商品库', icon: 'table' }
+        meta: { title: '淘宝商品库', icon: 'el-icon-s-goods' }
       }
     ]
   },
@@ -96,14 +96,14 @@ export const constantRoutes = [
     path: '/taskList',
     component: Layout,
     name: 'TaskList',
-    meta: { title: '任务列表', icon: 'el-icon-s-help' },
+    meta: { title: '任务列表', icon: 'el-icon-shopping-cart-2' },
     redirect: '/taskList',
     children: [
       {
         path: 'taskList',
         name: 'taskList',
         component: () => import('@/views/taskList/index'),
-        meta: { title: '任务表', icon: 'table' }
+        meta: { title: '任务表', icon: 'el-icon-coin' }
       }
     ]
   },
@@ -112,14 +112,14 @@ export const constantRoutes = [
     path: '/loginHis',
     component: Layout,
     name: 'LoginHis',
-    meta: { title: '访问记录', icon: 'el-icon-s-help' },
+    meta: { title: '访问记录', icon: 'el-icon-time' },
     redirect: '/loginHis',
     children: [
       {
         path: 'loginHis',
         name: 'loginHis',
         component: () => import('@/views/loginHis/index'),
-        meta: { title: '访问记录', icon: 'table' }
+        meta: { title: '访问记录', icon: 'el-icon-time' }
       }
     ]
   },
